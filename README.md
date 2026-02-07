@@ -131,9 +131,6 @@ The landing page includes a placeholder for Spline 3D scenes. To add your scenes
 - **Approximate Values**: Nutrition estimates are approximate
 - **Hackathon Demo**: Some features use mock data for demo purposes
 
-## 📝 License
-
-MIT
 
 ## 🙏 Acknowledgments
 
