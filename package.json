@@ -1,0 +1,20 @@
+{
+  "name": "kidney-care",
+  "version": "1.0.0",
+  "description": "Patient-only CKD Food Tracking Web App",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": ["ckd", "kidney", "nutrition", "tracking"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
+
