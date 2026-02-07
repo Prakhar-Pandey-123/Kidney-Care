@@ -13,21 +13,34 @@ router.post('/estimate', authenticate, upload.single('image'), async (req, res) 
     const { foodName, portionSize = 100 } = req.body;
     const image = req.file;
 
+    console.log('Nutrition estimation request:', { 
+      hasImage: !!image, 
+      foodName, 
+      portionSize 
+    });
+
     let result;
 
     if (image) {
-      // Estimate from image
+      // Estimate from image using Spoonacular API
+      console.log('Processing image...');
       result = await estimateNutritionFromImage(image.buffer, parseInt(portionSize));
+      console.log('Image analysis result:', result.foodName, result.confidenceScore);
     } else if (foodName) {
-      // Estimate from text
+      // Estimate from text using Spoonacular API
+      console.log('Processing text:', foodName);
       result = await estimateNutritionFromText(foodName, parseInt(portionSize));
+      console.log('Text analysis result:', result.foodName, result.confidenceScore);
     } else {
       return res.status(400).json({ message: 'Please provide food name or image' });
     }
 
     res.json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Estimation error:', error);
+    res.status(500).json({ 
+      message: error.message || 'Failed to estimate nutrition. Please try again.' 
+    });
   }
 });
 
